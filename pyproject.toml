@@ -1,0 +1,13 @@
+[project]
+name = "code-gym"
+version = "0.1.0"
+description = "Daily ML coding reps. From-scratch implementations of attention, optimizers, samplers, RL losses. Tracked like a gym."
+requires-python = ">=3.11"
+dependencies = [
+    "ipython>=9.13.0",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.10.9",
+    "numpy>=2.4.6",
+    "pytest>=9.0.3",
+    "torch>=2.12.0",
+]
