@@ -17,7 +17,7 @@ Update after each attempt. Best time wins.
 
 | Movement | Best time | Attempts | Last attempt | Notes |
 |----------|-----------|----------|--------------|-------|
-| `softmax_stable`  | — | 0 | — | |
+| `softmax_stable`  | 20m | 1 | 2026-05-22 | baseline; got per-axis max wrong initially (used global `np.max`), and coupled to torch; both fixed. matches `torch.softmax` on 3D random + 2D mixed-magnitude. |
 | `triangular_mask` | — | 0 | — | |
 | `cross_entropy`   | — | 0 | — | |
 | `layernorm`       | — | 0 | — | |

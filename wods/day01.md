@@ -21,9 +21,19 @@
   - Signature: take `mask=None` tensor instead of boolean `use_mask` — more flexible (padding masks, sliding windows).
   - Cache the causal-mask tensor outside the function (registered buffer, sliced per call) instead of rebuilding every forward.
 
-## Warmup (15 min): `softmax_stable`
+## Warmup (15 min target): `softmax_stable`
 
-_Pending — separate session._
+- Started: 10:20pm
+- First pass (runs without error): 10:27pm (~7 min)
+- Correct (passes `allclose` vs `torch.softmax`): 10:40pm
+- Total wall: ~20 min
+- **PB set:** 20m baseline. Next attempt target: <8 min unaided, clean.
+- Stuck on (and lessons):
+  - First pass used `np.max(x)` (global) instead of `np.max(x, axis, keepdims=True)` — works for 1D but breaks for 2D when magnitudes differ across rows. The stability point is *per-axis* max, not global.
+  - First pass also coupled the function to torch (`x.numpy()` in, `torch.tensor(out)` out). Function should be pure numpy; framework conversion belongs in the test block.
+- Cleanup in this attempt: renamed function `softmax` → `compute_softmax`, local `sum` → `axis_sum` (no more builtin/name shadows).
+- Followups (to address in attempt 2):
+  - Use explicit `dim=-1` in test comparisons rather than relying on `axis == -1` by coincidence for 2D inputs.
 
 ## Retro (one line)
 
