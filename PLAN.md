@@ -15,12 +15,14 @@ If extra time on a day, do another attempt of a past movement and try to PR.
 | Day | Main (45 min) | Warmup / LC deep-dive (15 / 30 min) |
 |-----|---------------|-------------------------------------|
 | 1   | `scaled_dot_product_attention`         | `softmax_stable` |
-| 2   | `multi_head_attention` (+ causal mask) | `layernorm` |
+| 2   | `multi_head_attention` (+ causal mask) | `triangular_mask` |
 | 3   | LC: Top K Frequent Elements            | Deep-dive: `adam` |
-| 4   | `transformer_block` (MHA+FFN+res+LN)   | `rmsnorm` |
-| 5   | `positional_encodings` (sinusoidal + RoPE) | `sgd_momentum` |
+| 4   | `transformer_block` (MHA+FFN+res+LN)   | `layernorm` |
+| 5   | `positional_encodings` (sinusoidal + RoPE) | `rmsnorm` |
 | 6   | LC: Product of Array Except Self       | Deep-dive: `dropout` |
 | 7   | Rest + retro                            | — |
+
+Note: `sgd_momentum` rolls into Week 2's warmup rotation. Order rationale: `triangular_mask` lands on Day 2 because it's the primitive MHA needs that same session; `layernorm` lands on Day 4 because the transformer block uses it.
 
 ## Week 2 — LLM inference core (preview)
 
