@@ -1,10 +1,10 @@
 # code-gym
 
-A daily training repo for ML coding reflexes. Built like a gym, not a course.
+A daily training repo for coding reflexes — from-scratch ML primitives + LeetCode practice. Built like a gym, not a course.
 
 ## What this is
 
-Most "interview prep" repos are short-lived sprints toward a single loop. This isn't that. It's a continuous training log — atomic from-scratch implementations of ML primitives (attention, layernorm, optimizers, samplers, RL losses) done under a timer, then compared against canonical references. Each implementation is a **movement**. The first attempt sets a baseline; subsequent attempts try to beat it.
+Most "interview prep" repos are short-lived sprints toward a single loop. This isn't that. It's a continuous training log — atomic from-scratch implementations of ML primitives (attention, layernorm, optimizers, samplers, RL losses) plus timed LeetCode mediums for algorithmic chops, done under a timer and compared against canonical references. Each implementation is a **movement**. The first attempt sets a baseline; subsequent attempts try to beat it.
 
 Think powerlifting log meets coding kata: same movements come back periodically, times get shorter, and the gap between "I know this conceptually" and "I can write it cold in 6 minutes" closes.
 

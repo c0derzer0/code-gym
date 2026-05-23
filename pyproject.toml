@@ -1,7 +1,7 @@
 [project]
 name = "code-gym"
 version = "0.1.0"
-description = "Daily ML coding reps. From-scratch implementations of attention, optimizers, samplers, RL losses. Tracked like a gym."
+description = "Daily coding gym — from-scratch ML implementations + LeetCode practice, tracked like a gym (movements / WODs / PBs)."
 requires-python = ">=3.11"
 dependencies = [
     "ipython>=9.13.0",
