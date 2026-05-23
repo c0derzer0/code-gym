@@ -1,4 +1,4 @@
-# Personal records
+# Personal bests
 
 Best **time-to-correct** per movement. "Correct" = passes the test block in the movement's README.
 

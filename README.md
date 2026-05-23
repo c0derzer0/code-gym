@@ -12,7 +12,7 @@ Think powerlifting log meets coding kata: same movements come back periodically,
 
 - **Movements** — atomic from-scratch implementations (`scaled_dot_product_attention`, `adam`, `rmsnorm`, ...). Each lives in `movements/<name>/`, with a problem statement, references, and an `attempts/` folder.
 - **WODs (Workouts of the Day)** — daily sessions combining 2–3 movements + a LeetCode "cardio." Logged in `wods/`.
-- **PRs (Personal Records)** — best time-to-correct on each movement. Tracked in `prs.md` and surfaced in the table below.
+- **PBs (Personal Bests)** — best time-to-correct on each movement. Tracked in `pbs.md` and surfaced in the table below.
 - **The Timer Rule** — during a movement's timer (45 min for main, 15 for warmup), no AI, no docs, no Stack Overflow. References come *after*. This is the whole point.
 
 ## Daily structure
@@ -23,7 +23,7 @@ Think powerlifting log meets coding kata: same movements come back periodically,
 | LC day (×2/week) | 30 min LeetCode medium + 30 min basic deep-dive |
 | Rest (×1/week) | Sunday retro + plan next week |
 
-## Personal records
+## Personal bests
 
 | Movement | Best time | Attempts | Last |
 |----------|-----------|----------|------|
@@ -40,7 +40,7 @@ movements/    one folder per atomic implementation
 wods/         daily workout logs
 leetcode/     LC mediums by category
 PLAN.md       rotation backbone (6-week cycle)
-prs.md        source of truth for PR table
+pbs.md        source of truth for PB table
 ```
 
 ## Setup

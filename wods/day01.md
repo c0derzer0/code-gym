@@ -8,7 +8,7 @@
 - First pass (runs without error): 8:10pm (~53 min)
 - Correct (passes `allclose` vs `F.scaled_dot_product_attention(is_causal=True)`): ~9:00pm
 - Total wall: ~1h43m (with coaching hints)
-- **PR set:** 1h43m baseline. Next attempt target: <30 min unaided.
+- **PB set:** 1h43m baseline. Next attempt target: <30 min unaided.
 - Two implementations:
   - `attention`: built an intermediate (0, -inf) mask tensor via `triu` + `masked_fill`, then `softmax(attn + mask)`.
   - `attention_mask_optimized`: inline `arange[None,:] > arange[:,None]` directly inside `masked_fill` on `attn` — no intermediate mask tensor.

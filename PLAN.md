@@ -8,7 +8,7 @@ The rotation. Six-week backbone. Each Sunday: review, re-prioritize next week's 
 - **Day 3, 6** — LC days: 30 min LC medium + 30 min basic deep-dive
 - **Day 7** — Rest + Sunday retro
 
-If extra time on a day, do another attempt of a past movement and try to PR.
+If extra time on a day, do another attempt of a past movement and try to set a new PB.
 
 ## Week 1 — Attention foundations
 
@@ -44,6 +44,6 @@ Each Sunday: write retro in the current week's WOD log, update next week's row.
 
 ## Sunday retro template
 
-1. PRs set this week?
+1. PBs set this week?
 2. Movements that felt slow — schedule a re-attempt next week.
 3. Any interview signal (real or upcoming) that should shift next week's theme?
