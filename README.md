@@ -1,12 +1,16 @@
 # code-gym
 
-A daily training repo for coding reflexes — from-scratch ML primitives + LeetCode practice. Built like a gym, not a course.
+Daily coding reps, by hand. To solidify fundamentals in a world of AI coding. Train the muscle, keep it working.
 
-## What this is
+## Why this exists
 
-Most "interview prep" repos are short-lived sprints toward a single loop. This isn't that. It's a continuous training log — atomic from-scratch implementations of ML primitives (attention, layernorm, optimizers, samplers, RL losses) plus timed LeetCode mediums for algorithmic chops, done under a timer and compared against canonical references. Each implementation is a **movement**. The first attempt sets a baseline; subsequent attempts try to beat it.
+AI writes most of the code now. Fast, mostly right. The catch: lean on it too much and the underlying muscle gets rusty. Writing attention from scratch. Reasoning through an algorithm cold. Debugging a training loop without help. Reading a paper and turning it into code without a copilot in the loop.
 
-Think powerlifting log meets coding kata: same movements come back periodically, times get shorter, and the gap between "I know this conceptually" and "I can write it cold in 6 minutes" closes.
+This repo is the gym. Daily ML primitives from scratch and LeetCode mediums, timed. No AI during the timer. References after.
+
+Same movements come back week after week. Form first, speed second. Over time the foundations get solid — fast enough to write what's needed when it's needed, and clear enough on first principles to actually review what the AI produces instead of trusting it blind.
+
+Also useful for interviews where people still test coding unassisted. And it reframes interview prep itself: instead of anxious cramming before a loop, it becomes part of a daily mental workout. Training, sometimes even fun.
 
 ## How it works
 
