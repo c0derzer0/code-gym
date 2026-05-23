@@ -31,11 +31,14 @@ Also useful for interviews where people still test coding unassisted. And it ref
 
 | Movement | Best time | Attempts | Last |
 |----------|-----------|----------|------|
-| _will populate after Day 1_ | — | — | — |
+| `scaled_dot_product_attention` | 1h43m | 1 | 2026-05-22 |
+| `softmax_stable`               | 20m   | 1 | 2026-05-22 |
+
+Full table in [`pbs.md`](pbs.md).
 
 ## Recent WODs
 
-_will populate after Day 1_
+- [Day 1 — 2026-05-22](wods/day01.md) — Attention foundations: SDPA (main) + stable softmax (warmup). Both verified vs PyTorch reference.
 
 ## Repo map
 
