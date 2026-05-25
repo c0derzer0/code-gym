@@ -32,7 +32,7 @@ Also useful for interviews where people still test coding unassisted. And it ref
 | Movement | Best time | Attempts | Last |
 |----------|-----------|----------|------|
 | `scaled_dot_product_attention` | 1h43m | 1 | 2026-05-22 |
-| `multi_head_attention`         | ~2h   | 1 | 2026-05-24 |
+| `multi_head_attention`         | ~1h40m| 1 | 2026-05-24 |
 | `softmax_stable`               | 20m   | 1 | 2026-05-22 |
 | `triangular_mask`              | 11m   | 1 | 2026-05-23 |
 
