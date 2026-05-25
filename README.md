@@ -31,15 +31,17 @@ Also useful for interviews where people still test coding unassisted. And it ref
 
 | Movement | Best time | Attempts | Last |
 |----------|-----------|----------|------|
-| `scaled_dot_product_attention` | 1h43m | 1 | 2026-05-22 |
-| `multi_head_attention`         | ~1h40m| 1 | 2026-05-24 |
-| `softmax_stable`               | 20m   | 1 | 2026-05-22 |
-| `triangular_mask`              | 11m   | 1 | 2026-05-23 |
+| `scaled_dot_product_attention` | 1h43m  | 1 | 2026-05-22 |
+| `multi_head_attention`         | ~1h40m | 1 | 2026-05-24 |
+| `adam`                         | ~1h15m | 1 | 2026-05-25 |
+| `softmax_stable`               | 20m    | 1 | 2026-05-22 |
+| `triangular_mask`              | 11m    | 1 | 2026-05-23 |
 
-Full table in [`pbs.md`](pbs.md).
+Full table in [`pbs.md`](pbs.md). LeetCode times tracked there too.
 
 ## Recent WODs
 
+- [Day 3 — 2026-05-25](wods/day03.md) — LC day: Top K Frequent Elements (two impls) + Adam deep-dive (matches `torch.optim.Adam` to 1e-5).
 - [Day 2 — 2026-05-23](wods/day02.md) — Attention foundations: MHA (main) + triangular mask (warmup). Causal property verified by perturbation test.
 - [Day 1 — 2026-05-22](wods/day01.md) — Attention foundations: SDPA (main) + stable softmax (warmup). Both verified vs PyTorch reference.
 

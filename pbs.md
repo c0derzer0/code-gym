@@ -23,12 +23,12 @@ Update after each attempt. Best time wins.
 | `layernorm`       | — | 0 | — | |
 | `rmsnorm`         | — | 0 | — | |
 | `sgd_momentum`    | — | 0 | — | |
-| `adam`            | — | 0 | — | |
+| `adam`            | ~1h15m | 1 | 2026-05-25 | baseline w/ hints; matches `torch.optim.Adam` over 50 steps to 1e-5; bias correction via m_hat/v_hat temps, not stored back into state |
 | `dropout`         | — | 0 | — | |
 
 ## LeetCode
 
 | Problem | Category | Best time | Attempts | Last |
 |---------|----------|-----------|----------|------|
-| Top K Frequent Elements         | arrays | — | 0 | — |
+| Top K Frequent Elements         | arrays | ~1h | 1 | 2026-05-25 | baseline w/ hints; two impls (incremental hash-of-hashes + canonical bucket sort); both pass 5 tests incl. edge cases |
 | Product of Array Except Self    | arrays | — | 0 | — |
