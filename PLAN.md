@@ -24,23 +24,44 @@ If extra time on a day, do another attempt of a past movement and try to set a n
 
 Note: `sgd_momentum` rolls into Week 2's warmup rotation. Order rationale: `triangular_mask` lands on Day 2 because it's the primitive MHA needs that same session; `layernorm` lands on Day 4 because the transformer block uses it.
 
-## Week 2 — LLM inference core (preview)
+## Week 2 — LLM inference core
 
-KV cache · Greedy + temperature sampling · Top-k + top-p · Batched inference w/ padding
-Warmups continue rotation: `cross_entropy`, `embedding_lookup`, `dataset_dataloader`, `training_loop_skeleton`
+| Day | Main (45 min) | Warmup / LC deep-dive |
+|-----|---------------|-----------------------|
+| 8   | `kv_cache` (extend Week 1's MHA)         | `cross_entropy` |
+| 9   | `sampling_greedy_temperature`            | `embedding_lookup` |
+| 10  | LC: Longest Substring Without Repeating  | Deep-dive: `sgd_momentum` |
+| 11  | `sampling_top_k_top_p`                   | `dataset_dataloader` |
+| 12  | `batched_inference_padding`              | `training_loop_skeleton` |
+| 13  | LC: 3Sum                                 | Deep-dive: `residual_block` |
+| 14  | Rest + retro                             | — |
 
-## Future weeks (6-week backbone)
+## Week 3 — Inference advanced (algo + memory, interleaved)
+
+| Day | Main (45 min) | Warmup / LC deep-dive |
+|-----|---------------|-----------------------|
+| 15  | `paged_kv_cache` (memory: block-table KV)    | `block_indexing` (paging primitive) |
+| 16  | `grouped_query_attention` (algo: Llama-3 style) | `repeat_interleave_kv` (GQA primitive) |
+| 17  | LC: Number of Islands (LC 200)               | Deep-dive: re-attempt `scaled_dot_product_attention` (speed PB) |
+| 18  | `quantize_linear_int8` (memory: weight-only) | `int8_quantize_dequantize_pair` |
+| 19  | `sliding_window_attention` (algo: Mistral)   | Re-attempt: `triangular_mask` as band-mask variant |
+| 20  | LC: Course Schedule (LC 207)                 | Deep-dive: `flash_attention_simplified` (online-softmax recurrence) |
+| 21  | Rest + retro                                 | — |
+
+Week 3 mixes 2 memory mains + 2 algo mains. Pairings: paged_kv_cache pairs with the GQA day (KV cache memory savings stack); quantization sits independently; sliding window naturally pairs with bounded KV cache. Dropped: beam_search (legacy), speculative_decoding (push to W4/W6), continuous batching (scheduler — discuss as system design, not a kata).
+
+## Future weeks (6-week backbone — adjust based on interview signal)
 
 | Week | Theme |
 |------|-------|
 | 1 | Attention foundations |
 | 2 | LLM inference core |
-| 3 | Inference advanced (beam, GQA, sliding window, speculative) |
-| 4 | Fine-tuning (LoRA, SFT, reward model, DPO) |
+| 3 | Inference advanced — algo + memory mixed (paged KV, GQA, INT8 quant, sliding window) |
+| 4 | Fine-tuning (LoRA, SFT, reward model, DPO) — also a likely landing spot for speculative_decoding + flash_attention full impl |
 | 5 | RLHF + mini-GPT capstone |
-| 6 | Synthesis — adaptive, weakest movements under timer |
+| 6 | Synthesis — adaptive, weakest movements under timer, slot for whatever interview signal demands |
 
-Each Sunday: write retro in the current week's WOD log, update next week's row.
+Each Sunday: write retro in the current week's WOD log, update next week's row. Plan is intentionally not locked beyond Week 3 — re-prioritize as interviews come in.
 
 ## Sunday retro template
 
