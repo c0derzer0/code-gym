@@ -9,7 +9,7 @@ Update after each attempt. Best time wins.
 | Movement | Best time | Attempts | Last attempt | Notes |
 |----------|-----------|----------|--------------|-------|
 | `scaled_dot_product_attention` | 1h43m | 1 | 2026-05-22 | baseline w/ coaching hints; two impls (intermediate-mask + inline `arange + masked_fill`); both match `F.sdpa(is_causal=True)` |
-| `multi_head_attention`         | — | 0 | — | |
+| `multi_head_attention`         | ~2h | 1 | 2026-05-24 | baseline w/ hints across two sessions; fused QKV + chunk split + causal-mask buffer + out_proj; passes shape + causality property tests |
 | `transformer_block`            | — | 0 | — | |
 | `positional_encodings`         | — | 0 | — | |
 
@@ -18,7 +18,7 @@ Update after each attempt. Best time wins.
 | Movement | Best time | Attempts | Last attempt | Notes |
 |----------|-----------|----------|--------------|-------|
 | `softmax_stable`  | 20m | 1 | 2026-05-22 | baseline; got per-axis max wrong initially (used global `np.max`), and coupled to torch; both fixed. matches `torch.softmax` on 3D random + 2D mixed-magnitude. |
-| `triangular_mask` | — | 0 | — | |
+| `triangular_mask` | 11m | 1 | 2026-05-23 | beats 15-min warmup target; bool (True = allowed, j ≤ i) + additive (0/-inf) variants from arange comparison |
 | `cross_entropy`   | — | 0 | — | |
 | `layernorm`       | — | 0 | — | |
 | `rmsnorm`         | — | 0 | — | |

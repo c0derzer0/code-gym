@@ -32,12 +32,15 @@ Also useful for interviews where people still test coding unassisted. And it ref
 | Movement | Best time | Attempts | Last |
 |----------|-----------|----------|------|
 | `scaled_dot_product_attention` | 1h43m | 1 | 2026-05-22 |
+| `multi_head_attention`         | ~2h   | 1 | 2026-05-24 |
 | `softmax_stable`               | 20m   | 1 | 2026-05-22 |
+| `triangular_mask`              | 11m   | 1 | 2026-05-23 |
 
 Full table in [`pbs.md`](pbs.md).
 
 ## Recent WODs
 
+- [Day 2 — 2026-05-23](wods/day02.md) — Attention foundations: MHA (main) + triangular mask (warmup). Causal property verified by perturbation test.
 - [Day 1 — 2026-05-22](wods/day01.md) — Attention foundations: SDPA (main) + stable softmax (warmup). Both verified vs PyTorch reference.
 
 ## Repo map
