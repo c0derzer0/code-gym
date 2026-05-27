@@ -20,7 +20,7 @@ Update after each attempt. Best time wins.
 | `softmax_stable`  | 20m | 1 | 2026-05-22 | baseline; got per-axis max wrong initially (used global `np.max`), and coupled to torch; both fixed. matches `torch.softmax` on 3D random + 2D mixed-magnitude. |
 | `triangular_mask` | 11m | 1 | 2026-05-23 | beats 15-min warmup target; bool (True = allowed, j ≤ i) + additive (0/-inf) variants from arange comparison |
 | `cross_entropy`   | — | 0 | — | |
-| `layernorm`       | — | 0 | — | |
+| `layernorm`       | ~40m | 1 | 2026-05-26 | baseline w/ hints; nn.Parameter γ/β (not buffers), biased variance via (x-mean)^2 mean (not torch.var), matches F.layer_norm within 1e-5 |
 | `rmsnorm`         | — | 0 | — | |
 | `sgd_momentum`    | — | 0 | — | |
 | `adam`            | ~1h15m | 1 | 2026-05-25 | baseline w/ hints; matches `torch.optim.Adam` over 50 steps to 1e-5; bias correction via m_hat/v_hat temps, not stored back into state |
