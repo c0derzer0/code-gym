@@ -19,10 +19,12 @@ If extra time on a day, do another attempt of a past movement and try to set a n
 | 3   | LC: Top K Frequent Elements            | Deep-dive: `adam` |
 | 4   | `transformer_block` (MHA+FFN+res+LN)   | `layernorm` |
 | 5   | `positional_encodings` (sinusoidal + RoPE) | `rmsnorm` |
-| 6   | LC: Product of Array Except Self       | Deep-dive: `dropout` |
+| 6   | LC: Number of Islands (graphs)         | Deep-dive: `dropout` |
 | 7   | Rest + retro                            | — |
 
 Note: `sgd_momentum` rolls into Week 2's warmup rotation. Order rationale: `triangular_mask` lands on Day 2 because it's the primitive MHA needs that same session; `layernorm` lands on Day 4 because the transformer block uses it.
+
+**LC rotation tilted toward Amazon (graphs + trees front-loaded for the ~1-2 week Annapurna timeline):** Days 6 → 13 cover graphs (Number of Islands, Course Schedule, Clone Graph); Days 17 + 20 cover trees (Level Order, Validate BST). Arrays/strings/DP/sliding-window come back in Weeks 4-6 once Amazon is done. Original arrays stubs (`product_of_array_except_self`) preserved for later.
 
 ## Week 2 — LLM inference core
 
@@ -30,10 +32,10 @@ Note: `sgd_momentum` rolls into Week 2's warmup rotation. Order rationale: `tria
 |-----|---------------|-----------------------|
 | 8   | `kv_cache` (extend Week 1's MHA)         | `cross_entropy` |
 | 9   | `sampling_greedy_temperature`            | `embedding_lookup` |
-| 10  | LC: Longest Substring Without Repeating  | Deep-dive: `sgd_momentum` |
+| 10  | LC: Course Schedule (topo sort)          | Deep-dive: `sgd_momentum` |
 | 11  | `sampling_top_k_top_p`                   | `dataset_dataloader` |
 | 12  | `batched_inference_padding`              | `training_loop_skeleton` |
-| 13  | LC: 3Sum                                 | Deep-dive: `residual_block` |
+| 13  | LC: Clone Graph (DFS + hashmap)          | Deep-dive: `residual_block` |
 | 14  | Rest + retro                             | — |
 
 ## Week 3 — Inference advanced (algo + memory, interleaved)
@@ -42,10 +44,10 @@ Note: `sgd_momentum` rolls into Week 2's warmup rotation. Order rationale: `tria
 |-----|---------------|-----------------------|
 | 15  | `paged_kv_cache` (memory: block-table KV)    | `block_indexing` (paging primitive) |
 | 16  | `grouped_query_attention` (algo: Llama-3 style) | `repeat_interleave_kv` (GQA primitive) |
-| 17  | LC: Number of Islands (LC 200)               | Deep-dive: re-attempt `scaled_dot_product_attention` (speed PB) |
+| 17  | LC: Binary Tree Level Order Traversal        | Deep-dive: re-attempt `scaled_dot_product_attention` (speed PB) |
 | 18  | `quantize_linear_int8` (memory: weight-only) | `int8_quantize_dequantize_pair` |
 | 19  | `sliding_window_attention` (algo: Mistral)   | Re-attempt: `triangular_mask` as band-mask variant |
-| 20  | LC: Course Schedule (LC 207)                 | Deep-dive: `flash_attention_simplified` (online-softmax recurrence) |
+| 20  | LC: Validate BST                             | Deep-dive: `flash_attention_simplified` (online-softmax recurrence) |
 | 21  | Rest + retro                                 | — |
 
 Week 3 mixes 2 memory mains + 2 algo mains. Pairings: paged_kv_cache pairs with the GQA day (KV cache memory savings stack); quantization sits independently; sliding window naturally pairs with bounded KV cache. Dropped: beam_search (legacy), speculative_decoding (push to W4/W6), continuous batching (scheduler — discuss as system design, not a kata).
