@@ -58,50 +58,129 @@ Note: `sgd_momentum` rolls into Week 2's warmup rotation. Order rationale: `tria
 
 Week 3 mixes 2 memory mains + 2 algo mains. Pairings: paged_kv_cache pairs with the GQA day (KV cache memory savings stack); quantization sits independently; sliding window naturally pairs with bounded KV cache. Dropped: beam_search (legacy), speculative_decoding (push to W4/W6), continuous batching (scheduler — discuss as system design, not a kata).
 
-## Week 4 — Production architectures (Llama-3 + MoE flavored)
+## Weeks 4-7 — mixed weeks (every category every week)
+
+Each week from here pulls from every track:
+- **Foundational** (architecture, RL algos, agent loops)
+- **Lower-level algorithms** (Welford, online softmax, FA recurrence)
+- **Optimizations** (MoE, LoRA, KV variants, quantization)
+- **Kernels** (Triton primitives → production Triton kernels)
+- **GPU networking** (TP, ZeRO-3, PP, NCCL — mostly conceptual on LC deep-dive days)
+- **LeetCode graphs/trees**
+- **Interesting algos** (LRU cache, Bloom filter, consistent hashing — occasional LC deep-dive)
+- **RL** (REINFORCE → DQN → PPO → GRPO)
+- **Speed PBs** (re-attempts of Week 1 movements)
+
+## Week 4 — Llama-3 + first kernels + RL kickoff
 
 | Day | Main (45 min) | Warmup / LC deep-dive |
 |-----|---------------|-----------------------|
-| 22 | `llama3_block` (RoPE + GQA + RMSNorm + SwiGLU stitched) | `swiglu` (gated activation primitive) |
-| 23 | `mixture_of_experts` (gating + top-k routing + expert FFNs) | Re-attempt: `layernorm` (speed PB) |
-| 24 | LC: Word Break (DP) | Deep-dive: sharding conceptual (tensor parallel + ZeRO-3) |
-| 25 | `lora_adapter` (low-rank wrap of nn.Linear; param-efficient fine-tune) | `dpo_loss` |
-| 26 | `flashattention_full_recurrence` (the full FA-2 algorithm, tile-by-tile) | Re-attempt: `multi_head_attention` (speed PB, GQA variant) |
-| 27 | LC: tree problem | Deep-dive: Triton kernel walk-through (open-source) |
+| 22 | `llama3_block` (foundational arch: RoPE + GQA + RMSNorm + SwiGLU) | `swiglu` (small primitive) |
+| 23 | `triton_vector_add` (kernels: first Triton kernel from scratch) | `welford_fused_meanvar` (lower-level alg) |
+| 24 | LC: Number of Islands (graphs) | Deep-dive: tensor parallel concepts (GPU networking) |
+| 25 | `mixture_of_experts` (optimization: top-k routing) | `online_softmax_recurrence` (lower-level alg, FA-2 building block) |
+| 26 | `reinforce_cartpole` (RL: policy gradient end-to-end) | `gym_env_skeleton` (RL primitive) |
+| 27 | LC: Clone Graph | Deep-dive: ZeRO-3 memory accounting (GPU networking) |
 | 28 | Rest + retro | — |
 
-## Week 5 — RL Environments + alignment
+## Week 5 — Kernels deepen + alignment + GPU networking
 
 | Day | Main (45 min) | Warmup / LC deep-dive |
 |-----|---------------|-----------------------|
-| 29 | `gym_env_skeleton` (Gymnasium-style env API; custom env from scratch) | `reward_signal_design` |
-| 30 | `reinforce_cartpole` (REINFORCE policy gradient end-to-end) | `replay_buffer` |
-| 31 | LC: graph problem | Deep-dive: `reward_hacking_failure_modes` |
-| 32 | `dqn_cartpole_minimal` (replay buffer + target net + ε-decay) | `epsilon_greedy_thompson` |
-| 33 | `vectorized_envs` (parallel env wrappers; SyncVectorEnv pattern) | Re-attempt: `adam` (speed PB) |
-| 34 | LC | Deep-dive: `ppo_clipped_objective` |
+| 29 | `triton_rmsnorm` (kernels: production-relevant fused kernel; benchmark vs naive PyTorch) | `triton_grid_block_concepts` (kernels primitive) |
+| 30 | `dqn_cartpole_minimal` (RL: replay buffer + target net + ε-decay) | `replay_buffer` (RL primitive) |
+| 31 | LC: Course Schedule | Deep-dive: pipeline parallel + bubble mitigation (GPU networking) |
+| 32 | `lora_adapter` (optimization: low-rank wrap of nn.Linear) | `dpo_loss` (alignment primitive) |
+| 33 | `flashattention_full_recurrence` (lower-level: FA-2 algorithm tile-by-tile) | Re-attempt: `multi_head_attention` (speed PB) |
+| 34 | LC: Validate BST | Deep-dive: NCCL all-reduce ring vs tree (GPU networking) |
 | 35 | Rest + retro | — |
 
-## Week 6 — Synthesis / interview week
+## Week 6 — More kernels + agents + interesting algos
 
-Real interviews this week ARE the mock interviews. After each:
-- 30-min retro: what got asked, what felt rusty, what to redo.
-- Re-attempt the weakest movement from the interview under timer.
+| Day | Main (45 min) | Warmup / LC deep-dive |
+|-----|---------------|-----------------------|
+| 36 | `triton_fused_softmax` (kernels: stable softmax in Triton; benchmark) | Re-attempt: `softmax_stable` (compare to Triton output) |
+| 37 | `ppo_clipped_objective` (RL: clipped policy ratio + GAE) | `vectorized_envs` (RL primitive) |
+| 38 | LC: Lowest Common Ancestor | Deep-dive: `lru_cache_from_scratch` (interesting algo, Amazon-frequent) |
+| 39 | `grpo_loss` (alignment: group-relative policy opt; DeepSeek style) | `reward_signal_design` (RL concept) |
+| 40 | `agent_loop_with_tools` (foundational: orchestration + tool dispatch + reflection) | `chat_template_serialization` (agent primitive) |
+| 41 | LC: Pacific Atlantic Water Flow | Deep-dive: `triton_attention_simple` (kernels: simplified FA-2 in Triton) |
+| 42 | Rest + retro | — |
 
-If no interviews, swap to weakest-movement re-attempts based on PB gaps.
+## Week 7 — Adaptive synthesis / interview week
 
-## Future weeks (adjust based on interview signal)
+By this point real interviews have likely landed. Each session:
+- Pick the weakest movement from the last interview, re-attempt under timer.
+- Or pick the topic the interviewer pulled hardest on, dive deeper.
 
-| Week | Theme |
-|------|-------|
+If no interview signal, default to:
+- Re-attempt the 3 movements with the largest gap between current PB and target.
+- Pick 2 LC mediums you haven't touched (Word Ladder, Rotting Oranges from the bonus pool).
+- 1 system design conversation aloud (multi-agent serving, LLM inference at scale).
+
+## Future weeks (adjust as interviews / signal demand)
+
+| Week | Headline |
+|------|----------|
 | 1 | Attention foundations |
 | 2 | LLM inference core |
 | 3 | Inference advanced — algo + memory mixed |
-| 4 | Production architectures (Llama-3 + MoE) — Amazon Annapurna prep |
-| 5 | RL Environments + alignment — Senior ML Eng RL Envs prep |
-| 6 | Synthesis / interview week |
+| 4 | Mixed: Llama-3 + first kernels + RL kickoff |
+| 5 | Mixed: kernels deepen + alignment + GPU networking |
+| 6 | Mixed: more kernels + agents + interesting algos |
+| 7 | Adaptive synthesis / interview week |
 
-Each Sunday: write retro in the current week's WOD log, update next week's row.
+Each Sunday: write retro, update next week's row.
+
+---
+
+## Long-term curriculum (Weeks 8+, indefinite)
+
+The gym keeps going past interview season. **The vision: deep CS + AI mastery — system-level, low-level, mathematical, applied.** Topics on deck, sprinkled across future mixed weeks:
+
+### Serving systems (track A)
+- vLLM internals: PagedAttention manager, scheduler, continuous batching, prefix caching
+- SGLang: RadixAttention, structured generation runtime
+- TensorRT-LLM patterns
+- Inference graph compilation (torch.compile, TorchDynamo, FX graphs)
+
+### Low-level kernels & systems (track B)
+- Triton: tiled matmul, attention kernels, persistent kernels
+- Memory hierarchies (HBM / L2 / SRAM / registers) — Roofline analysis
+- NCCL internals: ring vs tree all-reduce, NVLink topology, infiniband basics
+- GPU scheduling (cooperative groups, async copy)
+- Quantization deep dives: GPTQ, AWQ, SmoothQuant, FP8
+
+### Math fundamentals (track C)
+- Linear algebra reflexes: SVD, eigendecomp, low-rank approximation
+- Probability: KL/JSD, importance sampling, exponential families
+- Information theory: entropy, mutual info, channel capacity (for compression / quantization intuition)
+- Optimization theory: convexity, KKT, Adam convergence, why GD works
+- Calculus reflexes: backprop derivation, gradient estimators (REINFORCE, reparameterization, Gumbel-softmax)
+
+### RL — low-level + applied (track D)
+- Theory: policy gradient theorem derivation, value iteration, actor-critic variance reduction
+- Distributional RL: C51, QR-DQN, IQN
+- Off-policy + importance sampling weighting
+- Distributed RL infra: IMPALA-style actor-learner split, Ape-X replay
+- Custom env design patterns (POMDP wrappers, frame stacking, reward shaping pitfalls)
+- World models (V-JEPA, Cosmos, DINO-based) — cross-pollinate with CMU VLA research
+
+### Production AI (track E)
+- Eval harness design (lm-eval, custom rule-based evals)
+- RAG patterns at scale (hybrid retrieval, re-ranking, hallucination detection)
+- Agent orchestration: tool dispatch, reflection loops, parallel agents
+- Multi-modal: VLA action heads, flow matching, latent action models
+
+### Interesting algos + system design (track F)
+- LRU cache, LFU, ARC
+- Bloom filter, Count-Min sketch, HyperLogLog
+- Consistent hashing, Skiplist, Merkle trees
+- LSM trees, B+ trees (storage engines)
+- Raft consensus (for distributed RL infra background)
+- Practical system design: design a serving stack, design a training cluster, design a multi-agent platform
+
+Future mixed weeks pull from these tracks the same way Weeks 4-7 do: 4 mains + 2 LC days, each touching different tracks. No theme weeks — variety per week, depth per session.
 
 ## Sunday retro template
 
