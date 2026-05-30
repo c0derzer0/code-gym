@@ -12,6 +12,12 @@
 #   - cleaned Q/K/V split with qkv.chunk(3, dim=-1) instead of slicing in two different methods
 #   - used reshape (not view) after permute since the tensor is non-contiguous after permute
 #   - verification via shape assert + causality property (not allclose vs torch.nn.MHA, which won't match without copying weights and adding torch's out_proj convention)
+# Post-attempt fix (2026-05-30, while wiring transformer_block):
+#   - causal_mask was registered with shape (seq_len, seq_len) and used directly, so the
+#     class only worked when T at forward == seq_len at init. fix: treat the constructor's
+#     seq_len as MAX_seq_len, and slice the mask `self.causal_mask[:T, :T]` inside the
+#     attention call (with T = x.shape[1] passed through). matches nanoGPT pattern; now
+#     handles T < max_seq_len cleanly.
 import torch
 import torch.nn as nn
 import math
@@ -50,7 +56,7 @@ class MultiHeadAttn(nn.Module):
         return causal_mask
 
 
-    def causal_attn(self, q, k):
+    def causal_attn(self, q, k, T):
         #print(self.d_head)
         
         #print(q.shape)
@@ -59,7 +65,7 @@ class MultiHeadAttn(nn.Module):
         attn = (q @ kt) / math.sqrt(self.d_head)
         #print(attn.shape)
         #print(self.causal_mask)
-        attn = attn + self.causal_mask
+        attn = attn + self.causal_mask[:T, :T]
         causal_attn = torch.nn.functional.softmax(attn, dim=-1)
         return causal_attn
         
@@ -73,7 +79,7 @@ class MultiHeadAttn(nn.Module):
         qkv = qkv.permute(0, 2, 1, 3)
         #print(qkv.shape)
         q, k, v = qkv.chunk(3, dim=-1)
-        causal_attn = self.causal_attn(q, k)
+        causal_attn = self.causal_attn(q, k, T)
         # print(causal_attn.shape)
         # print(v.shape)
         out = causal_attn @ v

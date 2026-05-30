@@ -34,6 +34,8 @@ Also useful for interviews where people still test coding unassisted. And it ref
 | `scaled_dot_product_attention` | 1h43m  | 1 | 2026-05-22 |
 | `multi_head_attention`         | ~1h40m | 1 | 2026-05-24 |
 | `adam`                         | ~1h15m | 1 | 2026-05-25 |
+| `layernorm`                    | ~40m   | 1 | 2026-05-26 |
+| `transformer_block`            | ~43m   | 1 | 2026-05-30 |
 | `softmax_stable`               | 20m    | 1 | 2026-05-22 |
 | `triangular_mask`              | 11m    | 1 | 2026-05-23 |
 

@@ -10,7 +10,7 @@ Update after each attempt. Best time wins.
 |----------|-----------|----------|--------------|-------|
 | `scaled_dot_product_attention` | 1h43m | 1 | 2026-05-22 | baseline w/ coaching hints; two impls (intermediate-mask + inline `arange + masked_fill`); both match `F.sdpa(is_causal=True)` |
 | `multi_head_attention`         | ~2h | 1 | 2026-05-24 | baseline w/ hints across two sessions; fused QKV + chunk split + causal-mask buffer + out_proj; passes shape + causality property tests |
-| `transformer_block`            | — | 0 | — | |
+| `transformer_block`            | ~43m | 1 | 2026-05-30 | baseline w/ hints; pre-norm MHA + FFN + 2× LayerNorm + residuals; reuses MHA + LayerNorm from earlier days; shape preserves + grad flows + handles T < max_seq_len (forced a post-hoc fix in MHA to slice the mask) |
 | `positional_encodings`         | — | 0 | — | |
 
 ## Warmups & basics
