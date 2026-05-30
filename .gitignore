@@ -6,3 +6,6 @@ __pycache__/
 venv/
 *.egg-info/
 .pytest_cache/
+
+# Personal interview prep (behavioral stories, company-specific notes) — kept local
+prep/

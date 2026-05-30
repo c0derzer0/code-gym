@@ -50,18 +50,50 @@ Note: `sgd_momentum` rolls into Week 2's warmup rotation. Order rationale: `tria
 
 Week 3 mixes 2 memory mains + 2 algo mains. Pairings: paged_kv_cache pairs with the GQA day (KV cache memory savings stack); quantization sits independently; sliding window naturally pairs with bounded KV cache. Dropped: beam_search (legacy), speculative_decoding (push to W4/W6), continuous batching (scheduler — discuss as system design, not a kata).
 
-## Future weeks (6-week backbone — adjust based on interview signal)
+## Week 4 — Production architectures (Llama-3 + MoE flavored)
+
+| Day | Main (45 min) | Warmup / LC deep-dive |
+|-----|---------------|-----------------------|
+| 22 | `llama3_block` (RoPE + GQA + RMSNorm + SwiGLU stitched) | `swiglu` (gated activation primitive) |
+| 23 | `mixture_of_experts` (gating + top-k routing + expert FFNs) | Re-attempt: `layernorm` (speed PB) |
+| 24 | LC: Word Break (DP) | Deep-dive: sharding conceptual (tensor parallel + ZeRO-3) |
+| 25 | `lora_adapter` (low-rank wrap of nn.Linear; param-efficient fine-tune) | `dpo_loss` |
+| 26 | `flashattention_full_recurrence` (the full FA-2 algorithm, tile-by-tile) | Re-attempt: `multi_head_attention` (speed PB, GQA variant) |
+| 27 | LC: tree problem | Deep-dive: Triton kernel walk-through (open-source) |
+| 28 | Rest + retro | — |
+
+## Week 5 — RL Environments + alignment
+
+| Day | Main (45 min) | Warmup / LC deep-dive |
+|-----|---------------|-----------------------|
+| 29 | `gym_env_skeleton` (Gymnasium-style env API; custom env from scratch) | `reward_signal_design` |
+| 30 | `reinforce_cartpole` (REINFORCE policy gradient end-to-end) | `replay_buffer` |
+| 31 | LC: graph problem | Deep-dive: `reward_hacking_failure_modes` |
+| 32 | `dqn_cartpole_minimal` (replay buffer + target net + ε-decay) | `epsilon_greedy_thompson` |
+| 33 | `vectorized_envs` (parallel env wrappers; SyncVectorEnv pattern) | Re-attempt: `adam` (speed PB) |
+| 34 | LC | Deep-dive: `ppo_clipped_objective` |
+| 35 | Rest + retro | — |
+
+## Week 6 — Synthesis / interview week
+
+Real interviews this week ARE the mock interviews. After each:
+- 30-min retro: what got asked, what felt rusty, what to redo.
+- Re-attempt the weakest movement from the interview under timer.
+
+If no interviews, swap to weakest-movement re-attempts based on PB gaps.
+
+## Future weeks (adjust based on interview signal)
 
 | Week | Theme |
 |------|-------|
 | 1 | Attention foundations |
 | 2 | LLM inference core |
-| 3 | Inference advanced — algo + memory mixed (paged KV, GQA, INT8 quant, sliding window) |
-| 4 | Fine-tuning (LoRA, SFT, reward model, DPO) — also a likely landing spot for speculative_decoding + flash_attention full impl |
-| 5 | RLHF + mini-GPT capstone |
-| 6 | Synthesis — adaptive, weakest movements under timer, slot for whatever interview signal demands |
+| 3 | Inference advanced — algo + memory mixed |
+| 4 | Production architectures (Llama-3 + MoE) — Amazon Annapurna prep |
+| 5 | RL Environments + alignment — Senior ML Eng RL Envs prep |
+| 6 | Synthesis / interview week |
 
-Each Sunday: write retro in the current week's WOD log, update next week's row. Plan is intentionally not locked beyond Week 3 — re-prioritize as interviews come in.
+Each Sunday: write retro in the current week's WOD log, update next week's row.
 
 ## Sunday retro template
 
