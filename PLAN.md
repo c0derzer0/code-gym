@@ -26,6 +26,12 @@ Note: `sgd_momentum` rolls into Week 2's warmup rotation. Order rationale: `tria
 
 **LC rotation tilted toward Amazon (graphs + trees front-loaded for the ~1-2 week Annapurna timeline):** Days 6 → 13 cover graphs (Number of Islands, Course Schedule, Clone Graph); Days 17 + 20 cover trees (Level Order, Validate BST). Arrays/strings/DP/sliding-window come back in Weeks 4-6 once Amazon is done. Original arrays stubs (`product_of_array_except_self`) preserved for later.
 
+**Bonus reps available** (rest days, extra-time slots, or pre-Amazon cram):
+- `leetcode/graphs/pacific_atlantic_water_flow/` — multi-source DFS, reverse the flow
+- `leetcode/graphs/rotting_oranges/` — multi-source BFS with level tracking
+- `leetcode/graphs/word_ladder/` — BFS on word graph with pattern bucketing
+- `leetcode/trees/lowest_common_ancestor/` — recursive LCA, return-value semantics
+
 ## Week 2 — LLM inference core
 
 | Day | Main (45 min) | Warmup / LC deep-dive |
