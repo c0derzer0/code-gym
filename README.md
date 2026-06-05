@@ -36,6 +36,7 @@ Also useful for interviews where people still test coding unassisted. And it ref
 | `adam`                         | ~1h15m | 1 | 2026-05-25 |
 | `layernorm`                    | ~40m   | 1 | 2026-05-26 |
 | `transformer_block`            | ~43m   | 1 | 2026-05-30 |
+| `positional_encodings`         | ~73m   | 1 | 2026-06-04 |
 | `softmax_stable`               | 20m    | 1 | 2026-05-22 |
 | `triangular_mask`              | 11m    | 1 | 2026-05-23 |
 
