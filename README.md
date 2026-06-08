@@ -51,12 +51,15 @@ Full table in [`pbs.md`](pbs.md). LeetCode times tracked there too.
 ## Repo map
 
 ```
-movements/    one folder per atomic implementation
+movements/    one folder per atomic implementation (45-min reps — daily gym)
+projects/     multi-session from-scratch builds (mini_docker, mini_postgres, mini_os, ...)
 wods/         daily workout logs
 leetcode/     LC mediums by category
-PLAN.md       rotation backbone (6-week cycle)
+PLAN.md       rotation + long-term curriculum
 pbs.md        source of truth for PB table
 ```
+
+**Scope:** Started as ML coding reps. Expanded to full-stack CS+AI mastery — ML primitives, systems algorithms (paging, B-trees, Bloom filters, schedulers), and from-scratch projects (Docker, Postgres, Redis, OS, compiler). Everything built primitive by primitive. See `PLAN.md` for the long-term track list.
 
 ## Setup
 

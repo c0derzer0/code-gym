@@ -183,7 +183,42 @@ The gym keeps going past interview season. **The vision: deep CS + AI mastery �
 - Raft consensus (for distributed RL infra background)
 - Practical system design: design a serving stack, design a training cluster, design a multi-agent platform
 
-Future mixed weeks pull from these tracks the same way Weeks 4-7 do: 4 mains + 2 LC days, each touching different tracks. No theme weeks — variety per week, depth per session.
+### Systems algorithms — OS, storage, networks (track G — NEW)
+All 45-min movements that fit the daily gym. Build the underlying primitives of the `projects/` builds:
+- `page_table_walk` — virtual address → physical via multi-level page table; TLB simulation
+- `cooperative_scheduler` — yield-based coroutines; context switches without OS threads
+- `b_tree_insert_search` — B-tree from scratch; node splits + merges
+- `lsm_tree_compaction` — write to memtable, flush to SSTables, leveled compaction
+- `consistent_hashing_ring` — ring + virtual nodes + lookup
+- `bloom_filter` — bit array + k hash functions; FPR computation
+- `count_min_sketch` — streaming frequency, error bounds
+- `hyperloglog_cardinality` — probabilistic cardinality estimation
+- `merkle_tree_verification` — content-addressed verification + proof
+- `skiplist_ops` — probabilistic balanced search structure
+- `chroot_jail_demo` — chroot + minimal filesystem isolation (Linux)
+- `pid_namespace_isolation` — Linux PID namespace via syscall (mini_docker's primitive)
+- `cgroup_memory_limit` — set memory limit on a child process (mini_docker's primitive)
+- `tcp_three_way_handshake` — SYN/SYN-ACK/ACK state machine in user space
+- `producer_consumer_queue` — bounded queue with lock + condition var
+- `mark_sweep_gc` — toy garbage collector; reachability from roots
+- `simple_paxos_or_raft_leader` — just the leader election piece
+- `content_addressed_blob_store` — Git's object store primitive
+
+### From-scratch projects (multi-session builds — lives in `projects/`, not `movements/`)
+See `projects/README.md` for the full list. Highlights:
+- `mini_docker` — chroot + namespaces + cgroups
+- `mini_postgres` — buffer pool + B-tree + executor
+- `mini_redis` — KV + AOF + pub/sub
+- `mini_git` — object store + refs + commits
+- `mini_tcp` — TCP state machine over UDP
+- `mini_os` — xv6-style: bootloader + paging + scheduler + FS
+- `mini_compiler` — lexer + parser + bytecode VM
+- `mini_vllm` — inference server with PagedAttention + continuous batching
+- `mini_pytorch` — tensor library with autograd
+
+Future mixed weeks pull from these tracks the same way Weeks 4-7 do: 4 mains + 2 LC days, each touching different tracks. No theme weeks — variety per week, depth per session. Systems-algorithm movements integrate directly into the daily rotation; projects fill rest days / weekends / dedicated sprints.
+
+**The repo's long-term vision: everything from scratch. CS + AI mastery measured by what you've personally built, primitive by primitive.**
 
 ## Sunday retro template
 
