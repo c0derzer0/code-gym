@@ -13,6 +13,12 @@ Update after each attempt. Best time wins.
 | `transformer_block`            | ~43m | 1 | 2026-05-30 | baseline w/ hints; pre-norm MHA + FFN + 2× LayerNorm + residuals; reuses MHA + LayerNorm from earlier days; shape preserves + grad flows + handles T < max_seq_len (forced a post-hoc fix in MHA to slice the mask) |
 | `positional_encodings`         | ~73m | 1 | 2026-06-04 | baseline w/ hints; sinusoidal w/ sin+phase trick + RoPE w/ clever mask-and-stack companion vector. RoPE verified via relative-position invariance (inner product depends only on m-n). Standard half-d / Llama rotate-half ~2× more efficient — followup. |
 
+## Foundational (added based on interview signal)
+
+| Movement | Best time | Attempts | Last attempt | Notes |
+|----------|-----------|----------|--------------|-------|
+| `backprop_from_scratch` | — | 0 | — | 2-layer MLP binary classifier in pure numpy. Forward+backward+training loop. Convergence: acc > 90% on toy task. Failed an interview on this — re-rep until under 45 min unaided. |
+
 ## Warmups & basics
 
 | Movement | Best time | Attempts | Last attempt | Notes |

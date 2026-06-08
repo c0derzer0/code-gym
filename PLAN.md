@@ -32,6 +32,9 @@ Note: `sgd_momentum` rolls into Week 2's warmup rotation. Order rationale: `tria
 - `leetcode/graphs/word_ladder/` — BFS on word graph with pattern bucketing
 - `leetcode/trees/lowest_common_ancestor/` — recursive LCA, return-value semantics
 
+**Foundational movements (added based on interview signal):**
+- `movements/backprop_from_scratch/` — 2-layer MLP binary classifier, pure numpy, forward + backward + training loop. THE most common "implement X from scratch" ML interview question. Failed one on this — re-rep until under 45 min unaided. Slot into any ML day as the main, or as a warmup re-attempt once you've passed once.
+
 ## Week 2 — LLM inference core
 
 | Day | Main (45 min) | Warmup / LC deep-dive |
