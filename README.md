@@ -55,7 +55,8 @@ movements/    one folder per atomic implementation (45-min reps — daily gym)
 projects/     multi-session from-scratch builds (mini_docker, mini_postgres, mini_os, ...)
 wods/         daily workout logs
 leetcode/     LC mediums by category
-PLAN.md       rotation + long-term curriculum
+PLAN.md       next 1-2 weeks of concrete movements (slim, low-overhead)
+CATALOG.md    full menu of tracks/movements/projects to browse from
 pbs.md        source of truth for PB table
 ```
 
