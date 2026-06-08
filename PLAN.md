@@ -204,6 +204,55 @@ All 45-min movements that fit the daily gym. Build the underlying primitives of 
 - `simple_paxos_or_raft_leader` — just the leader election piece
 - `content_addressed_blob_store` — Git's object store primitive
 
+### Generative models (track H — NEW)
+- `vae_minimal` — encoder + decoder + reparameterization + KL on MNIST. The original generative latent-variable model.
+- `ddpm_forward_noising` — forward diffusion: `q(x_t | x_0) = N(√ᾱ_t · x_0, (1-ᾱ_t) · I)`. Linear / cosine schedules.
+- `ddpm_reverse_denoising` — reverse process: train a U-Net to predict noise; sample by iterating `x_{t-1} = (1/√α_t)(x_t - β_t·ε_θ(x_t,t)/√(1-ᾱ_t)) + σ_t · z`.
+- `ddim_deterministic_sampling` — non-Markovian deterministic sampling; fewer steps.
+- `classifier_free_guidance` — train with conditional dropout, sample with `ε_guided = (1+w)·ε_cond − w·ε_uncond`.
+- `flow_matching_2d` — modern continuous-time alternative; train velocity field, sample via ODE solve.
+- `gan_minimal` — generator + discriminator + JS divergence. Mode collapse demo.
+
+### Vision architectures (track I — NEW)
+- `conv2d_from_scratch` — im2col-based convolution; verify against `F.conv2d` to 1e-5.
+- `resnet_block` — conv → BN → ReLU → conv → BN → residual.
+- `batchnorm_from_scratch` — train/eval stats, running mean/var, momentum.
+- `unet_minimal` — encoder-decoder with skip connections; the diffusion backbone.
+- `vit_patch_embed` — image → patches → flatten → linear → add CLS token → transformer.
+
+### Sequence model variants (track J — NEW)
+- `bpe_tokenizer` — byte-pair encoding from scratch; train on a small corpus, encode/decode.
+- `encoder_decoder_transformer` — cross-attention layer; the original "Attention is All You Need" architecture.
+- `bert_masked_lm` — bidirectional attention (no causal mask) + MLM head.
+- `mamba_ssm_basic` — selective state space model; the linear-attention competitor.
+- `linear_attention_perfomer` — approximate softmax attention with feature maps.
+
+### Multimodal (track K — NEW)
+- `clip_contrastive_loss` — image-text contrastive learning; symmetric NT-Xent loss.
+- `vla_action_head` — language-conditioned action head for robotic control; flow-matching style action prediction (connects to user's CMU world-models research).
+- `cross_modal_attention` — attend from text tokens to image patches and vice versa.
+
+### Cloud & distributed systems (track L — NEW)
+The primitives behind every AWS/GCP/Azure service. 45-min movements that compose into the `projects/mini_cloud/` builds:
+- `http_server_from_sockets` — parse HTTP/1.1 requests + write responses; no framework.
+- `dns_query_encoder_decoder` — DNS message format (header + question + RR records) from raw bytes.
+- `tls_handshake_concept` — client hello → server hello → key exchange → finished; conceptual + cipher suite negotiation.
+- `jwt_sign_verify` — HMAC-SHA256 or RSA signing; header.payload.signature; verify untrusted JWTs.
+- `oauth2_authorization_code_flow` — token issuance + refresh; resource server validation.
+- `rate_limiter_token_bucket` — token bucket + leaky bucket; per-user + per-IP variants.
+- `circuit_breaker_state_machine` — closed/open/half-open with retry budgets.
+- `service_discovery_registry` — heartbeat-based registry with eviction.
+- `distributed_lock_redlock` — Redis-style distributed lock with fencing tokens.
+- `gossip_membership_protocol` — SWIM-style failure detector + membership.
+- `vector_clocks` — track causal ordering across nodes.
+- `lamport_clocks` — total ordering of events.
+- `two_phase_commit` — coordinator + participants; failure handling.
+- `quorum_read_write` — N/R/W parameters; read-your-writes consistency.
+- `crdt_g_counter` — grow-only counter (state-based CRDT).
+- `crdt_lww_register` — last-write-wins register.
+- `vnode_consistent_hashing` — partitioning + rebalancing on join/leave.
+- `idempotent_request_dedup` — request ID-based dedup; exactly-once semantics.
+
 ### From-scratch projects (multi-session builds — lives in `projects/`, not `movements/`)
 See `projects/README.md` for the full list. Highlights:
 - `mini_docker` — chroot + namespaces + cgroups
