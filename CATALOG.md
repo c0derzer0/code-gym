@@ -164,6 +164,23 @@ Generic CS reflexes. Most are 15-30 min — perfect quick wins.
 - `event_loop_from_scratch` (build a minimal asyncio loop)
 - `big_o_under_timer` (annotate 10 code snippets with time/space in 10 min)
 
+## Track Q — Rust (feeding `mini_pytorch_rust` project)
+
+Small Rust reps that build the muscle for the bigger Rust project. ~60-90 min each (Rust is slower to write than Python — give yourself room).
+
+- `rust_tensor_struct` — `Tensor { data: Vec<f32>, shape, stride }` + indexing + `Tensor::zeros/ones/randn`.
+- `rust_naive_matmul` — triple-loop matmul; verify against `ndarray` crate.
+- `rust_blocked_matmul` — tile-based matmul; benchmark vs naive.
+- `rust_broadcasting_helper` — given two shapes, produce broadcasted shape + strides.
+- `rust_autograd_minimal` — scalar autograd (micrograd in Rust); use `Rc<RefCell<Node>>` for the graph.
+- `rust_computation_graph` — tape-based op recording for tensor autograd.
+- `rust_module_trait` — design the `Module` trait + parameter iteration pattern.
+- `rust_ownership_drills` — clone vs move vs borrow on tensor-like structs; build the reflex.
+- `rust_simd_dot_product` — use `std::simd` for a vectorized dot product; benchmark vs naive.
+- `rust_rayon_parallel_reduce` — parallel sum via `rayon::par_iter`.
+
+These feed directly into `projects/mini_pytorch_rust/`. See that project's README for the 7-phase roadmap.
+
 ## Track P — State machines
 
 The hidden currency of CS — show up in regex, parsers, async/await, distributed systems, game logic.
