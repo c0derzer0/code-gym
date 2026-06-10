@@ -18,6 +18,7 @@ Update after each attempt. Best time wins.
 | Movement | Best time | Attempts | Last attempt | Notes |
 |----------|-----------|----------|--------------|-------|
 | `backprop_from_scratch` | — | 0 | — | 2-layer MLP binary classifier in pure numpy. Forward+backward+training loop. Convergence: acc > 90% on toy task. Failed an interview on this — re-rep until under 45 min unaided. |
+| `ring_all_reduce_simulated` | — | 0 | — | N processes via `multiprocessing`, ring algorithm, scatter-reduce + all-gather phases. Bandwidth-optimal all-reduce, the foundation of NCCL. Test: all ranks match `sum(locals)` + per-rank comm ~ `2(N-1)/N · B`. |
 
 ## Warmups & basics
 
