@@ -39,14 +39,44 @@ Attention stack, optimizers, samplers, transformer core. Most of these are in `m
 
 ## Track D — GPU networking & distributed training
 
-Mostly conceptual deep-dives on LC days. A few movements.
+### Simulation movements (laptop-fine, multiprocessing-based)
 
-- Tensor parallel concepts (column-parallel + row-parallel pattern)
-- ZeRO-1/2/3 memory accounting
-- Pipeline parallel + bubble mitigation
-- NCCL: ring vs tree all-reduce, NVLink topology
-- `all_reduce_naive` (concept-level implementation; understand what NCCL does)
-- `nccl_collectives_overview` (broadcast, gather, scatter, all-gather)
+The whole point: you can build deep intuition for NCCL/DDP/FSDP **without GPUs**. Simulate processes-as-GPUs over IPC, get the algorithm right, then the real-hardware version is "swap the transport layer."
+
+- `ring_all_reduce_simulated` — N processes via `multiprocessing`, each holds a vector slice, exchange in a ring until all hold the reduced sum. Implements the bandwidth-optimal all-reduce. **Highest-clarity exercise in the whole track — do this one first.**
+- `tree_all_reduce_simulated` — binary-tree reduction; latency-optimal for small messages. Compare comm volume vs ring.
+- `hierarchical_all_reduce_concept` — two-level: NVLink-fast within node, IB-slow across nodes. Simulate with different "transport speeds."
+- `all_gather_reduce_scatter_paired` — FSDP's two primitives; show they compose to all-reduce.
+- `broadcast_tree_simulated` — rank 0 fans out via binary tree.
+
+### Trace + accounting movements (laptop-fine, no code execution needed)
+
+- `ddp_grad_sync_walkthrough` — trace through PyTorch DDP step-by-step: forward → backward → grad bucketing → all-reduce → optimizer step. Diagram it.
+- `fsdp_memory_accounting` — given params/grads/opt-state sizes, compute per-GPU memory at each ZeRO stage (1, 2, 3). Show how the math works.
+- `zero3_collective_pattern` — when does FSDP all-gather params? when reduce-scatter grads? Sketch the full forward + backward pass communication pattern.
+- `pipeline_parallel_1f1b_schedule` — visualize a 1F1B pipeline schedule across N stages, show where the bubble is.
+- `tensor_parallel_column_row_pair` — implement the column-parallel + row-parallel linear pair from Megatron-LM; show how it cancels one all-reduce.
+- `roofline_analysis_simple` — given peak FLOPs + peak bandwidth, compute the critical arithmetic intensity for memory-bound vs compute-bound.
+
+### Rented-GPU experiments (when budget allows; ~$10-20/hour)
+
+These need real multi-GPU; rent 2-8× A100s for an hour. The cheapest way to internalize the numbers.
+
+- `nccl_tests_runbook` — runbook for renting 4× A100 + running NVIDIA's nccl-tests + reading the bandwidth numbers across message sizes. ~$10, 1 hour.
+- `ddp_real_run` — actual `torchrun --nproc_per_node=4` on rented GPUs. Profile with Nsight Systems.
+- `fsdp_zero3_demo` — load a model that doesn't fit on one GPU, train with FSDP. Watch memory shrink as you go from ZeRO-1 to ZeRO-3.
+- `tensor_parallel_with_megatron` — Megatron-LM examples on 2-GPU TP.
+
+### Reading list (single best resources)
+
+- **HuggingFace UltraScale Playbook** — free, comprehensive. The single document to read.
+- ZeRO paper (Rajbhandari et al., 2020) §1-4
+- Megatron-LM paper (Shoeybi et al., 2019)
+- Ring all-reduce: Patarasuk & Yuan, 2009
+- NCCL source: `github.com/NVIDIA/nccl`
+- PyTorch DDP / FSDP source under `torch/distributed/`
+
+Feeds into the `projects/mini_nccl_lite/` build.
 
 ## Track E — Production architectures (Llama-3 + MoE)
 

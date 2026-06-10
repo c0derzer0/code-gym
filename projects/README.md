@@ -21,6 +21,7 @@ Each is a directory containing its own README + design notes + sub-modules. Tack
 - **`mini_vllm/`** — Inference server with PagedAttention + continuous batching + simple HTTP API. End-to-end: tokenizer → KV cache → sampling → response stream.
 - **`mini_pytorch/`** — Tensor library with autograd, NumPy backend (Python). Build on `backprop_from_scratch` — generalize to tape-based autodiff. Goal: train MNIST through a `mini_pytorch` API that mirrors PyTorch's.
 - **`mini_pytorch_rust/`** — Same goal, but in **Rust**. 7 phases from tensor struct → autograd → MNIST MLP → tiny transformer → SIMD speedups → GPU. Forces deep understanding of ownership + zero-cost abstractions. Precedent: HuggingFace Candle, Burn. **Multi-month — tackle one phase at a time.** See its own README for milestones.
+- **`mini_nccl_lite/`** — A toy NCCL-shaped collective communications library over TCP. Ring all-reduce, tree broadcast, reduce-scatter/all-gather, `torchrun`-like launcher. **Runs entirely on a laptop** with N processes — no GPUs needed to build the distributed-training intuition. 9 phases, multi-week. See its own README.
 - **`mini_triton/`** — Read-and-explain — port a Triton kernel to CUDA C++, identify what the Triton compiler is doing for you. Less "from scratch," more "decompile and understand."
 
 ### Generative models (end-to-end training pipelines)
