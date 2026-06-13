@@ -1,6 +1,6 @@
 # Clone Graph
 
-LeetCode 133 · Medium · **Amazon-frequent**
+LeetCode 133 · Medium 
 
 ## Problem
 

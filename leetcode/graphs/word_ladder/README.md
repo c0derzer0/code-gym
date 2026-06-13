@@ -68,7 +68,7 @@ ladderLength("hit", "cog", ["hot","dot","dog","lot","log"])
 - `visited` set prevents re-processing — critical for performance.
 - Use a tuple `(word, steps)` in queue, or track distance via a separate dict.
 
-## Why Amazon likes this
+## Why this is worth knowing
 
 Tests the "transform the problem into a graph" insight. Words aren't a graph until you decide they are. The pattern-bucketing optimization is the kind of detail that separates "I can BFS" from "I can BFS *efficiently*."
 

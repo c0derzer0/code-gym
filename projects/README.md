@@ -64,7 +64,7 @@ Projects don't have a PB table the way movements do — they're not timed reps. 
 ## When to tackle a project
 
 - **Weekend / rest day:** start a milestone, push as far as you can in 3-4 hours.
-- **Dedicated week:** if a project is the right interview-relevant build (e.g., mini_vllm before an inference-team interview), swap a regular gym week for it.
+- **Dedicated week:** if a project is the right build for the moment (e.g., focused study of inference systems → `mini_vllm`), swap a regular gym week for it.
 - **Bounded learning sprint:** "this Sunday I'm going to write the Docker chroot + PID namespace piece." Single session, single milestone.
 
 Default: don't let projects displace the daily gym. Movements keep the muscle warm; projects build depth on top.

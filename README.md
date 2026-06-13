@@ -10,7 +10,7 @@ This repo is the gym. Daily ML primitives from scratch and LeetCode mediums, tim
 
 Same movements come back week after week. Form first, speed second. Over time the foundations get solid — fast enough to write what's needed when it's needed, and clear enough on first principles to actually review what the AI produces instead of trusting it blind.
 
-Also useful for interviews where people still test coding unassisted. And it reframes interview prep itself: instead of anxious cramming before a loop, it becomes part of a daily mental workout. Training, sometimes even fun.
+Side benefit: the same daily reps build the kind of fluency that holds up under any timed-coding setting. The gym takes the cramming out of the equation — there's nothing to cram, just keep training.
 
 ## How it works
 

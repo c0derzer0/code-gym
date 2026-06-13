@@ -1,6 +1,6 @@
 # Validate Binary Search Tree
 
-LeetCode 98 · Medium · **Amazon-frequent**
+LeetCode 98 · Medium 
 
 ## Problem
 

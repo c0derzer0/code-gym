@@ -42,9 +42,8 @@ Don't pre-plan further. Each Sunday:
 
 1. **Browse [`CATALOG.md`](CATALOG.md)** for next week's 4 main movements + 2 LC mediums.
 2. **Mix tracks.** Pull from different categories (math, kernels, systems, ML core, etc.) so the week stays varied.
-3. **Use interview signal.** If a real interview is coming, tilt toward Amazon-frequent (graphs/trees LC, inference depth) or RL-Envs-frequent (Gymnasium API, REINFORCE, env design).
-4. **Use weakness signal.** If a past movement felt slow, schedule a re-attempt as next week's warmup.
-5. **One movement / day, rotate categories.** That's the rule.
+3. **Use weakness signal.** If a past movement felt slow, schedule a re-attempt as next week's warmup.
+4. **One movement / day, rotate categories.** That's the rule.
 
 ## Bonus reps available (when you have extra time)
 
@@ -52,7 +51,8 @@ Don't pre-plan further. Each Sunday:
 - `leetcode/graphs/rotting_oranges/` — multi-source BFS
 - `leetcode/graphs/word_ladder/` — BFS + pattern bucketing
 - `leetcode/trees/lowest_common_ancestor/` — recursive LCA
-- `movements/backprop_from_scratch/` — 2-layer MLP, pure numpy. Re-rep every few weeks; this is the highest-frequency ML interview question.
+- `movements/backprop_from_scratch/` — 2-layer MLP, pure numpy. Re-rep periodically; the substrate every ML training loop is built on.
+- `movements/ring_all_reduce_simulated/` — bandwidth-optimal collective via multiprocessing. Foundation of NCCL.
 
 ## Sunday retro template
 

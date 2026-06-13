@@ -1,6 +1,6 @@
 # Number of Islands
 
-LeetCode 200 · Medium · **Amazon-frequent**
+LeetCode 200 · Medium 
 
 ## Problem
 
@@ -17,7 +17,7 @@ def numIslands(grid: list[list[str]]) -> int:
 2. **BFS** — Same complexity. Use a queue instead of recursion. Better for huge grids (avoids stack overflow).
 3. **Union-Find** — O(MN · α(MN)). Overkill for this problem; useful if islands could be added/removed dynamically.
 
-**For an Amazon interview:** DFS is the expected answer. Mention BFS as an alternative when the grid is too deep for recursion.
+**Preferred approach:** DFS is the expected answer. Mention BFS as an alternative when the grid is too deep for recursion.
 
 ## Test
 

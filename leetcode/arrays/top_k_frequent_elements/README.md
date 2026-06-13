@@ -21,7 +21,7 @@ def topKFrequent(nums: list[int], k: int) -> list[int]:
 
 1. **Bucket sort** — O(n). Count frequencies, place each value into a bucket indexed by frequency, walk buckets high → low until you have k.
 2. **Heap of size k** — O(n log k). Counter, then `heapq.nsmallest(k, ...)` with negative counts.
-3. **Sort** — O(n log n). Counter, sort by count desc, return top k. Acceptable but the interviewer will ask for better.
+3. **Sort** — O(n log n). Counter, sort by count desc, return top k. Acceptable but suboptimal — the better approaches are above.
 
 ## Test
 

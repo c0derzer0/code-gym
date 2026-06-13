@@ -1,6 +1,6 @@
 # Binary Tree Level Order Traversal
 
-LeetCode 102 · Medium · **Amazon-frequent**
+LeetCode 102 · Medium 
 
 ## Problem
 

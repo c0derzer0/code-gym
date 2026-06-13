@@ -1,8 +1,8 @@
 # Backprop from scratch
 
-**Foundational movement.** Build a 2-layer MLP binary classifier in pure numpy — forward pass, backward pass (chain rule by hand), SGD update, and a training loop that visibly converges.
+Foundational movement. Build a 2-layer MLP binary classifier in pure numpy — forward pass, backward pass (chain rule by hand), SGD update, and a training loop that visibly converges.
 
-This is the single most-asked ML coding interview question. If you can write this cold in 45 minutes, you pass most "implement X from scratch" ML rounds. Failed once at an interview where the timer ran out before the training loop — this movement exists so it doesn't happen again.
+The pieces tested here — manual gradient bookkeeping, per-layer `dL/dW` and `dL/dx`, the sigmoid+BCE combined-gradient shortcut, a working SGD step — are the substrate every higher-level ML system is built on. If you can write this cold in 45 minutes you can write almost any small from-scratch training loop.
 
 ## Problem
 
@@ -95,7 +95,7 @@ y = (X.sum(axis=1, keepdims=True) > 0).astype(float)   # (N, 1) — 0 or 1, NOT 
 
 Critical: `y` must be `{0, 1}` shaped `(N, 1)` to match `out`. NOT `np.random.randn` (that gives real-valued labels — BCE goes NaN).
 
-## Common bugs (study these, they will come up)
+## Common bugs
 
 1. **Sigmoid operator precedence**: `1 / 1 + np.exp(-x)` is `1 + exp(-x)`. Need parens: `1 / (1 + np.exp(-x))`.
 2. **`y` not in {0, 1}**: random.randn gives reals; BCE NaNs. Use `> threshold` and cast to float.
@@ -114,15 +114,15 @@ Critical: `y` must be `{0, 1}` shaped `(N, 1)` to match `out`. NOT `np.random.ra
 - Stanford CS231n notes on backpropagation.
 - "Matrix calculus for backprop" cheat sheet (Justin Johnson).
 
-## What to say aloud in an interview
+## Walkthrough flow (for explaining the algorithm aloud)
 
-The flow that wins this:
+The narrative that makes this implementation legible to a reader:
 
-1. **Clarify**: "Binary classifier, single sigmoid output, BCE loss? Numpy only? Should I include bias? Any batch-size constraint?"
-2. **Sketch forward aloud before coding**: "Two linears, sigmoid on hidden, sigmoid on output, BCE."
-3. **Sketch backprop aloud**: "Each linear caches its input. Backward computes `dL/dW = x.T @ dL_dout`, `dL/dx = dL_dout @ W.T`, returns upstream. For sigmoid+BCE I'll use the combined gradient `(p - y) / N` w.r.t. the logit."
+1. **Frame the problem**: binary classifier, single sigmoid output, BCE loss, pure numpy.
+2. **Sketch forward**: two linears, sigmoid on hidden, sigmoid on output, BCE.
+3. **Sketch backprop**: each linear caches its input. Backward computes `dL/dW = x.T @ dL_dout`, `dL/dx = dL_dout @ W.T`, returns upstream. For sigmoid+BCE the combined gradient simplifies to `(p - y) / N` w.r.t. the logit.
 4. **Code top-down**: Linear class → NN class → loss → training loop.
-5. **Test on synthetic data, watch loss drop**. That's the closer.
+5. **Test on synthetic data, watch loss drop.** That's the closer.
 
 ## Variants for future attempts
 

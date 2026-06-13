@@ -1,6 +1,6 @@
 # Course Schedule
 
-LeetCode 207 · Medium · **Amazon-frequent**
+LeetCode 207 · Medium 
 
 ## Problem
 
@@ -16,7 +16,7 @@ def canFinish(numCourses: int, prerequisites: list[list[int]]) -> bool:
 1. **Kahn's algorithm (BFS topological sort)** — O(V + E). Compute in-degrees, BFS from nodes with in-degree 0. If you visit all nodes, no cycle.
 2. **DFS with three colors** — O(V + E). White (unvisited), gray (in progress), black (done). If you see a gray node during DFS, cycle detected.
 
-**For Amazon:** Kahn's is cleaner to write under timer. Mention DFS-coloring as an alternative.
+**Preferred approach:** Kahn's is cleaner to write under timer. Mention DFS-coloring as an alternative.
 
 ## Test
 

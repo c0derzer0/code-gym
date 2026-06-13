@@ -40,6 +40,6 @@ heights = [
 - Edge cells belong to both oceans if they're corner cells — yes, they should be in the result.
 - Single-row or single-column grids — every cell is on a border.
 
-## Why Amazon likes this
+## Why this is worth knowing
 
 Tests two patterns at once: multi-source BFS/DFS + inverted-direction thinking. The "don't simulate forward, simulate backward from the borders" insight is the kind of leap they look for.

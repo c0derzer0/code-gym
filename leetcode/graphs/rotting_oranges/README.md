@@ -53,6 +53,6 @@ return minutes if fresh == 0 else -1
 - Increment minutes *after* processing each level. If `q` empties on the level that makes the last orange rot, that level counted but no future level adds to minutes.
 - Edge case: grid starts with zero fresh oranges → return 0, not the number of minutes BFS would take.
 
-## Why Amazon likes this
+## Why this is worth knowing
 
 Multi-source BFS + level tracking + edge cases (impossible, no-fresh, all-fresh). Realistic systems-style problem packaging.

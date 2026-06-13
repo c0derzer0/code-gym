@@ -105,10 +105,10 @@ For comparison: implement double-tree all-reduce. `O(log N) × buffer_size` per 
 
 ## What this proves
 
-- You understand collectives at the algorithmic level (not the API level).
+- You understand collectives at the algorithmic level, not the API level.
 - You can debug "why is my distributed training slow" — bandwidth math is internalized.
 - You can read NCCL source and recognize the patterns.
-- For interviews at Anthropic/OpenAI/Meta/Google scaling teams: this is exactly the kind of thing that gets you to "talk to me about the bandwidth implications of ZeRO-3 in your last project."
+- The project is a concrete artifact you can talk through, end to end, about distributed-training internals.
 
 ## Feeding movements (start with these before any phase)
 

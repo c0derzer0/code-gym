@@ -118,14 +118,12 @@ Small Rust reps that build the muscle before tackling each phase. Add these to `
 
 Each is a 60-90 min Rust rep. Once a few are done, the project phases become much more tractable.
 
-## What this proves on a resume / interview
+## What this proves
 
 - Deep ownership of ML internals — you've implemented autograd, not just used it.
 - Rust fluency — ownership, lifetimes, traits, performance-aware code.
 - Systems thinking — memory layouts, SIMD, GPU-via-FFI.
 - Real shipped code — `cargo run --example train_mlp_mnist` works on someone else's machine.
-
-For roles at HF (Candle team), inference startups (FerrousML, Modular), or any "ML systems in Rust" team — this is exactly the project to point at.
 
 ## References (read after each phase, not before)
 

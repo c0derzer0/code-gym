@@ -68,6 +68,6 @@ The base case "`root is p` returns p" handles the "node is a descendant of itsel
 - The "node can be a descendant of itself" rule is the reason the base case `root is p or root is q` returns immediately.
 - This problem has many variants: LCA in BST (LC 235, easier), LCA of multiple nodes, LCA when the tree has parent pointers. Be ready to discuss.
 
-## Why Amazon likes this
+## Why this is worth knowing
 
 The recursion is elegant but easy to get wrong. The return-value semantics test whether you can reason about recursive types — what does a function return, and what does that mean? Trips a lot of people up.
