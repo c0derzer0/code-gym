@@ -24,17 +24,19 @@ If extra time on a day, do another attempt of a past movement and try to set a n
 | 6   | LC: Number of Islands                        | Deep-dive: `dropout` |
 | 7   | Rest + retro                                 | — |
 
-## Week 2 — LLM inference core
+## Week 2 — LLM inference optimizations (tilted for a Friday morning coding session)
 
-| Day | Main (45 min) | Warmup / LC deep-dive |
-|-----|---------------|-----------------------|
-| 8   | `kv_cache` (extend Week 1's MHA)         | `cross_entropy` |
-| 9   | `sampling_greedy_temperature`            | `embedding_lookup` |
-| 10  | LC: Course Schedule (topo sort)          | Deep-dive: `sgd_momentum` |
-| 11  | `sampling_top_k_top_p`                   | `dataset_dataloader` |
-| 12  | `batched_inference_padding`              | `training_loop_skeleton` |
-| 13  | LC: Clone Graph                          | Deep-dive: `residual_block` |
-| 14  | Rest + retro                             | — |
+| Day | Main (~90 min main + explain aloud) | Notes |
+|-----|-------------------------------------|-------|
+| 8 (Mon)  | `kv_cache` — extend Week 1's MHA with `forward(x, cache=None)` | Verify: full-seq vs one-token-at-a-time cached generation match to 1e-5 |
+| 9 (Tue)  | Morning: `online_softmax_recurrence` — Flash Attention's core algorithm (pure numpy). Afternoon: `grouped_query_attention` — MHA variant with `n_kv_heads < n_q_heads` | Verify online softmax matches `torch.softmax`; GQA verifies same output shape + causality property |
+| 10 (Wed) | `quantize_linear_int8` — symmetric per-tensor weight quantization | Verify SNR ~40 dB vs fp32 linear |
+| 11 (Thu) | End-to-end mock: implement MHA-with-KV-cache from scratch under 45 min timer. Explain FA memory savings aloud. **Rest evening.** | No new code — reinforcement |
+| 12 (Fri) | Rest day (morning is off-repo) | — |
+| 13 (Sat) | Back to regular Week 2 plan: `sampling_greedy_temperature` + LC | — |
+| 14 (Sun) | `sampling_top_k_top_p` + Sunday retro | — |
+
+Held over (was in Week 2, moved to Week 3): `batched_inference_padding`, `dataset_dataloader`, `training_loop_skeleton`, `embedding_lookup`, `cross_entropy`, LC Clone Graph, LC Course Schedule.
 
 ## Beyond Week 2 — Sunday-retro driven
 

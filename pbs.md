@@ -11,6 +11,7 @@ Update after each attempt. Best time wins.
 | `scaled_dot_product_attention` | 1h43m | 1 | 2026-05-22 | baseline w/ coaching hints; two impls (intermediate-mask + inline `arange + masked_fill`); both match `F.sdpa(is_causal=True)` |
 | `multi_head_attention`         | ~2h | 1 | 2026-05-24 | baseline w/ hints across two sessions; fused QKV + chunk split + causal-mask buffer + out_proj; passes shape + causality property tests |
 | `transformer_block`            | ~43m | 1 | 2026-05-30 | baseline w/ hints; pre-norm MHA + FFN + 2× LayerNorm + residuals; reuses MHA + LayerNorm from earlier days; shape preserves + grad flows + handles T < max_seq_len (forced a post-hoc fix in MHA to slice the mask) |
+| `kv_cache`                     | — | 0 | — | Extend MHA with `forward(x, cache=None)` supporting incremental generation. Verification: full-sequence forward matches one-token-at-a-time cached generation to 1e-5. Dominant LLM inference optimization. |
 | `positional_encodings`         | ~73m | 1 | 2026-06-04 | baseline w/ hints; sinusoidal w/ sin+phase trick + RoPE w/ clever mask-and-stack companion vector. RoPE verified via relative-position invariance (inner product depends only on m-n). Standard half-d / Llama rotate-half ~2× more efficient — followup. |
 
 ## Foundational
