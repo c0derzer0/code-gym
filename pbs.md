@@ -15,6 +15,18 @@ Update after each attempt. Best time wins.
 | `online_softmax_recurrence`    | — | 0 | — | Flash Attention's core algorithm. Numpy. Two-pass: pass 1 computes running (m, d) chunk-by-chunk with rescale on max updates; pass 2 computes output. Verify allclose vs torch.softmax to 1e-6. |
 | `grouped_query_attention`      | — | 0 | — | MHA variant with n_kv_heads < n_q_heads. K/V broadcast across Q groups via repeat_interleave. Llama-3 style. Verify shape + causality property. |
 | `gpu_compute_model`            | — | 0 | — | Writing + reasoning movement. GPU hierarchy (SM/warp/block/thread), memory hierarchy (registers/SRAM/L2/HBM), occupancy, roofline analysis. Numpy tiled matmul as concrete simulation. Prerequisite for kernel work. |
+| `sampling_greedy_topk_topp`    | — | 0 | — | 4 sampling functions: greedy, temperature, top-k, top-p. Numpy or torch. Verify against `torch.multinomial` distribution. |
+| `tp_column_row_pair`           | — | 0 | — | Column-parallel + row-parallel linear pair in numpy. No multiprocessing. Verify equivalence to single-worker + count comm bytes per pair. |
+| `ddp_grad_sync`                | — | 0 | — | Simulated DDP with N workers. Split batch, average grads, verify identical model across workers + match single-worker training. |
+| `zero_memory_accounting`       | — | 0 | — | Per-GPU memory calculator for ZeRO-0/1/2/3. Compute the 16 bytes/param mixed-precision Adam number and verify sharding formulas. |
+| `prefill_decode_analysis`      | — | 0 | — | Arithmetic intensity + wall-clock estimates for prefill vs decode. Prove decode is memory-bound (~70 ms/tok on 70B/A100). |
+| `paged_kv_cache`               | — | 0 | — | 3 exercises: block allocator with free pool, Sequence with block table, contiguous vs paged memory waste comparison. |
+| `flash_attention_v2`           | — | 0 | — | Full FA-2 in numpy: tiled Q, tiled K/V, online softmax within, output accumulator rescale. Verify vs vanilla attention numerically. Multi-hour movement. |
+| `paged_attention_full`         | — | 0 | — | Complete paged attention forward with per-sequence block tables, batched variable-length attention, memory accounting under churn. |
+| `zero_stages_simulated`        | — | 0 | — | ZeRO-1/2/3 via multiprocessing. Verify all workers converge to same params as DDP baseline. Measure comm + memory per stage. |
+| `tensor_parallel_simulated`    | — | 0 | — | Full multi-process TP: column-then-row pair with real all-reduce via multiprocessing. Verify vs single-worker training. |
+| `data_parallel_simulated`      | — | 0 | — | Full DDP via multiprocessing: grad all-reduce, verify convergence matches single-worker, measure throughput scaling. |
+| `prefill_decode_split`         | — | 0 | — | Separate prefill/decode paths + chunked prefill + continuous batching mixed batch. Builds full inference engine. |
 | `positional_encodings`         | ~73m | 1 | 2026-06-04 | baseline w/ hints; sinusoidal w/ sin+phase trick + RoPE w/ clever mask-and-stack companion vector. RoPE verified via relative-position invariance (inner product depends only on m-n). Standard half-d / Llama rotate-half ~2× more efficient — followup. |
 
 ## Foundational
