@@ -14,6 +14,7 @@ Update after each attempt. Best time wins.
 | `kv_cache`                     | ~1 day | 1 | 2026-07-07 | Extend MHA with `forward(x, cache=None)` supporting incremental generation. Verified: full-sequence forward matches one-token-at-a-time cached generation to 1e-5. Baseline w/ several hint rounds — bugs: causal mask returned bool tensor (bool + attn added 1.0 instead of -inf), permute with shape values instead of axis indices, nn.linear typo, cache=None handling in the write path. |
 | `online_softmax_recurrence`    | — | 0 | — | Flash Attention's core algorithm. Numpy. Two-pass: pass 1 computes running (m, d) chunk-by-chunk with rescale on max updates; pass 2 computes output. Verify allclose vs torch.softmax to 1e-6. |
 | `grouped_query_attention`      | — | 0 | — | MHA variant with n_kv_heads < n_q_heads. K/V broadcast across Q groups via repeat_interleave. Llama-3 style. Verify shape + causality property. |
+| `gpu_compute_model`            | — | 0 | — | Writing + reasoning movement. GPU hierarchy (SM/warp/block/thread), memory hierarchy (registers/SRAM/L2/HBM), occupancy, roofline analysis. Numpy tiled matmul as concrete simulation. Prerequisite for kernel work. |
 | `positional_encodings`         | ~73m | 1 | 2026-06-04 | baseline w/ hints; sinusoidal w/ sin+phase trick + RoPE w/ clever mask-and-stack companion vector. RoPE verified via relative-position invariance (inner product depends only on m-n). Standard half-d / Llama rotate-half ~2× more efficient — followup. |
 
 ## Foundational

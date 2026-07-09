@@ -31,6 +31,7 @@ Attention stack, optimizers, samplers, transformer core. Most of these are in `m
 
 ## Track C — Kernels (Triton, CUDA basics)
 
+- `gpu_compute_model` — SMs, warps, blocks, memory hierarchy, roofline analysis. Written mental-model movement + numpy tiled matmul simulation. Prerequisite for reasoning about the rest.
 - `triton_vector_add`, `triton_grid_block_concepts`
 - `triton_rmsnorm`, `triton_fused_softmax`, `triton_attention_simple`
 - `triton_tiled_matmul`
